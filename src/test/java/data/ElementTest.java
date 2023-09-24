@@ -33,6 +33,11 @@ class ElementTest {
 		Element com = new Element("COM", "COM", 5, false, null);
 		Element sg4 = new Element("SG4", "CTA(COM){0,5}", 10, false, Arrays.asList(cta, com));
 
+		Element tod = new Element("TOD", "TOD", 1, true, null);
+		Element locSg5 = new Element("LOC", "LOC", 5, false, null);
+		Element ftx = new Element("FTX", "FTX", 5, false, null);
+		Element sg5 = new Element("SG5", "TOD(LOC){0,5}(FTX){0,5}", 10, false, Arrays.asList(tod, locSg5, ftx));
+
 		Element sg1 = new Element("SG1", "RFF(DTM){0,1}", 10, false, Arrays.asList(rff, dtm));
 		Element sg2 = new Element("SG2", "NAD(LOC){0,10}(RFF(DTM){0,1}){0,10}(CTA(COM){0,5}){0,10}", 99, false, Arrays.asList(nad, loc, sg3, sg4));
 
@@ -41,7 +46,7 @@ class ElementTest {
 				"UNHBGM(DTM){0,10}(ALI){0,5}(MEA){0,5}(MOA){0,5}(CUX){0,9}(NAD(LOC){0,10}(RFF(DTM){0,1}){0,10}(CTA(COM){0,5}){0,10}){0,10}",
 				1,
 				true,
-				Arrays.asList(unh, bgm, dtmHead, ali, mea, moa, cux, sg1, sg2));
+				Arrays.asList(unh, bgm, dtmHead, ali, mea, moa, cux, sg1, sg2, sg5));
 
 		System.out.println("Message");
 
@@ -65,6 +70,7 @@ class ElementTest {
 
 		EdifactNode node = Element.parse(buffer.toString(), message, lines, 0);
 		Assertions.assertEquals(6, node.getChildren().size());
+		Assertions.assertEquals(4, node.getChildren().get(5).getChildren().size());
 
 	}
 }
