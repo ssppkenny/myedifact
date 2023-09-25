@@ -38,6 +38,31 @@ class ElementTest {
 		Element ftx = new Element("FTX", "FTX", 5, false, null);
 		Element sg5 = new Element("SG5", "TOD(LOC){0,5}(FTX){0,5}", 10, false, Arrays.asList(tod, locSg5, ftx));
 
+		Element tdt = new Element("TDT", "TDT", 1, true, null);
+		Element pcd = new Element("PCD", "PCD", 6, false, null);
+		Element tmd = new Element("TMD", "TMD", 1, false, null);
+		// SG6 begin
+		Element locSg7 = new Element("LOC", "LOC", 1, true, null);
+		Element dtmSg7 = new Element("DTM", "DTM", 10, false, null);
+		Element sg7 = new Element("SG7", "LOC(DTM){0,10}", 10, false, Arrays.asList(locSg7, dtmSg7));
+
+		Element sg6 = new Element("SG6", "TDT(PCD){0,6}(TMD){0,1}(LOC(DTM){0,10}){0,10}", 10, false, Arrays.asList(tdt, pcd, tmd, sg7));
+		// SG6 end
+
+		// SG8 begin
+		Element eqd = new Element("EQD", "EQD", 1, true, null);
+		Element meaSg8 = new Element("MEA", "MEA", 5, false, null);
+		Element sel = new Element("SEL", "SEL", 25, false, null);
+		Element eqa = new Element("EQA", "EQA", 5, false, null);
+
+		Element hanSg9 = new Element("HAN", "HAN", 1, true, null);
+		Element ftxSg9 = new Element("FTX", "FTX", 10, false, null);
+
+		Element sg9 = new Element("SG9", "HAN(FTX){0,10}", 10, false, Arrays.asList(hanSg9, ftxSg9));
+
+		Element sg8 = new Element("SG8", "EQD(MEA){0,5}(SEL){0,25}(EQA){0,5}(HAN(FTX){0,10}){0,10}", 10, false, Arrays.asList(eqd, meaSg8, sel, eqa, sg9));
+		// SG8 end
+
 		Element sg1 = new Element("SG1", "RFF(DTM){0,1}", 10, false, Arrays.asList(rff, dtm));
 		Element sg2 = new Element("SG2", "NAD(LOC){0,10}(RFF(DTM){0,1}){0,10}(CTA(COM){0,5}){0,10}", 99, false, Arrays.asList(nad, loc, sg3, sg4));
 
@@ -46,7 +71,7 @@ class ElementTest {
 				"UNHBGM(DTM){0,10}(ALI){0,5}(MEA){0,5}(MOA){0,5}(CUX){0,9}(NAD(LOC){0,10}(RFF(DTM){0,1}){0,10}(CTA(COM){0,5}){0,10}){0,10}",
 				1,
 				true,
-				Arrays.asList(unh, bgm, dtmHead, ali, mea, moa, cux, sg1, sg2, sg5));
+				Arrays.asList(unh, bgm, dtmHead, ali, mea, moa, cux, sg1, sg2, sg5, sg6, sg8));
 
 		System.out.println("Message");
 
